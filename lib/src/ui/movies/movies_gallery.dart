@@ -9,6 +9,10 @@ class MoviesGallery extends StatelessWidget {
   final _moviesBloc = MoviesBloc();
   get moviesStream => _moviesBloc.movies;
 
+  MoviesGallery() {
+    _moviesBloc.getAllMovies();
+  }
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
@@ -18,11 +22,13 @@ class MoviesGallery extends StatelessWidget {
           final itemsCount = snapshot.data.movies.length;
           return Text('Items count: $itemsCount');
         }
-        else {
-          return Center(
-            child: CircularProgressIndicator()
-          );
+        else if(snapshot.hasError) {
+          return Text(snapshot.error.toString());
         }
+        
+        return Center(
+          child: CircularProgressIndicator()
+        );
       },
     );
   }
