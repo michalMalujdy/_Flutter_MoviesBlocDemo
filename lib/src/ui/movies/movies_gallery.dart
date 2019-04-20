@@ -18,6 +18,11 @@ class MoviesGallery extends StatelessWidget {
           final itemsCount = snapshot.data.movies.length;
           return Text('Items count: $itemsCount');
         }
+        else {
+          return Center(
+            child: CircularProgressIndicator()
+          );
+        }
       },
     );
   }
