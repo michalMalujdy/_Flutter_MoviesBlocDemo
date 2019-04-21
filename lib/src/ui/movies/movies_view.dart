@@ -6,15 +6,11 @@ class MoviesView extends StatelessWidget {
   final _moviesBloc = MoviesBloc();
   get moviesStream => _moviesBloc.movies;
 
-  MoviesView() {
-    //_moviesBloc.getAllMovies();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
-        title: Text('Movies'),
+        title: Text('Movies Top 20'),
       ),
       body: _buildBody()
     );
