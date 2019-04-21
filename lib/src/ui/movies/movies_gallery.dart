@@ -10,7 +10,7 @@ class MoviesGallery extends StatelessWidget {
   get moviesStream => _moviesBloc.movies;
 
   MoviesGallery() {
-    _moviesBloc.getAllMovies();
+    _moviesBloc.getAllMovies(); // TODO resolve if this is a good place to 
   }
 
   @override
@@ -19,8 +19,11 @@ class MoviesGallery extends StatelessWidget {
       stream: moviesStream,
       builder: (context, AsyncSnapshot<MoviesCollection> snapshot) {
         if (snapshot.hasData) {
-          final itemsCount = snapshot.data.movies.length;
-          return Text('Items count: $itemsCount');
+          var moviesNames = '';
+          for (var movie in snapshot.data.movies) {
+            moviesNames += movie.title + '\n';
+          }
+          return Text(moviesNames);
         }
         else if(snapshot.hasError) {
           return Text(snapshot.error.toString());
